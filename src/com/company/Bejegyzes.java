@@ -14,7 +14,8 @@ public class Bejegyzes {
 
     private FileReader fr;
     private BufferedReader br;
-    private List<Bejegyzes> bejegyzesekLista;
+    public List<Bejegyzes> bejegyzesekLista;
+
     public Bejegyzes(Bejegyzes[] bejegyzesTomb){
         this.bejegyzesekLista = new ArrayList<>();
         for (int i = 0; i < bejegyzesTomb.length; i++) {
@@ -51,7 +52,6 @@ public class Bejegyzes {
     this.tartalom=tartalom;
     }
 
-
     public String getSzerzo(){
         return szerzo;
     }
@@ -74,6 +74,14 @@ public class Bejegyzes {
     public void like(){
         likeok++;
     }
+
+    public String  Kiiratas() {
+        String listaKi = "";
+        for (Bejegyzes item : bejegyzesekLista) {
+            listaKi += item + "\n";
+        }
+        return listaKi;
+    }
     @Override
     public String toString() {
         return this.szerzo +
@@ -81,6 +89,7 @@ public class Bejegyzes {
                 this.letrejott+"\n" + "Szerkeztve:" +
                 this.szerkeztve+"\n" + this.tartalom;
     }
+
 
 
 }
