@@ -87,7 +87,16 @@ public class Bejegyzes {
         for (Bejegyzes item : bejegyzesekLista) {
             System.out.println(item);
         }
-        
+
+    }
+    public int kevesebbMintTizenot(){
+        int ossz=0;
+        for(Bejegyzes item:bejegyzesekLista){
+            if(item.getLikeok()<15){
+                ossz++;
+            }
+        }
+        return ossz;
     }
     @Override
     public String toString() {
