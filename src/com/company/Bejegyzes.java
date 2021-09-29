@@ -10,8 +10,8 @@ public class Bejegyzes {
     private String szerzo;
     private String tartalom;
     private int likeok=0;
-    private LocalDateTime letrejott;
-    private LocalDateTime szerkeztve;
+    private LocalDateTime letrejott=LocalDateTime.now();
+    private LocalDateTime  szerkeztve=LocalDateTime.now();
 
     public Bejegyzes(String szerzo,String tartalom){
     this.szerzo=szerzo;
@@ -27,6 +27,7 @@ public class Bejegyzes {
     }
     public void setTartalom(String ujtartalom) {
         this.tartalom = ujtartalom;
+        szerkeztve=LocalDateTime.now();
     }
     public int getLikeok(){
         return likeok;
@@ -36,6 +37,9 @@ public class Bejegyzes {
     }
     public LocalDateTime getSzerkeztve(){
         return szerkeztve;
+    }
+    public void like(){
+        likeok++;
     }
 
 
