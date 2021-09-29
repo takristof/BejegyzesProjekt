@@ -2,6 +2,7 @@ package com.company;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.time.DateTimeException;
 import java.time.LocalDate;
@@ -18,13 +19,13 @@ public class Bejegyzes {
     public List<Bejegyzes> bejegyzesekLista;
     public static Random random=new Random();
 
-    public Bejegyzes(Bejegyzes[] bejegyzesTomb){
+    public Bejegyzes(Bejegyzes[] bejegyzesTomb) throws IOException {
         this.bejegyzesekLista = new ArrayList<>();
         for (int i = 0; i < bejegyzesTomb.length; i++) {
             bejegyzesekLista.add(bejegyzesTomb[i]);
         }
     }
-    public Bejegyzes(String fileNev){
+    public Bejegyzes(String fileNev) throws IOException {
         this.bejegyzesekLista = new ArrayList<>();
         try {
             this.fr = new FileReader(fileNev);
@@ -49,7 +50,7 @@ public class Bejegyzes {
     private LocalDateTime letrejott=LocalDateTime.now();
     private LocalDateTime  szerkeztve=LocalDateTime.now();
 
-    public Bejegyzes(String szerzo,String tartalom){
+    public Bejegyzes(String szerzo,String tartalom) throws IOException {
     this.szerzo=szerzo;
     this.tartalom=tartalom;
     }
@@ -97,6 +98,13 @@ public class Bejegyzes {
             }
         }
         return ossz;
+    }
+    public void fajlbaKi() throws IOException {
+    FileWriter writer = new FileWriter("output.txt");
+    for(Bejegyzes str: bejegyzesekLista) {
+        writer.write(str + System.lineSeparator());
+    }
+    writer.close();
     }
     @Override
     public String toString() {
