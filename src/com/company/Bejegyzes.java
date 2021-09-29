@@ -1,12 +1,45 @@
 package com.company;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Bejegyzes {
 
+    private FileReader fr;
+    private BufferedReader br;
+    private List<Bejegyzes> bejegyzesekLista;
+    public Bejegyzes(Bejegyzes[] bejegyzesTomb){
+        this.bejegyzesekLista = new ArrayList<>();
+        for (int i = 0; i < bejegyzesTomb.length; i++) {
+            bejegyzesekLista.add(bejegyzesTomb[i]);
+        }
+    }
+    public Bejegyzes(String fileNev){
+        this.bejegyzesekLista = new ArrayList<>();
+        try {
+            this.fr = new FileReader(fileNev);
+            this.br = new BufferedReader(fr);
+            String line = br.readLine();
+            while (line != null){
+                String[] adatok = line.split(";");
+                Bejegyzes obj = new Bejegyzes(adatok[0], adatok[1]);
+                bejegyzesekLista.add(obj);
+                line = br.readLine();
+            }
+
+            br.close();
+            fr.close();
+        }catch (IOException ex){
+            System.out.println(ex.getMessage());
+        }
+    }
     private String szerzo;
     private String tartalom;
     private int likeok=0;
@@ -43,9 +76,11 @@ public class Bejegyzes {
     }
     @Override
     public String toString() {
-        return this.szerzo+this.likeok+this.letrejott+"Szerkeztve:"+this.szerkeztve+this.tartalom;
+        return this.szerzo +
+                "\n" + this.likeok+"\n" +
+                this.letrejott+"\n" + "Szerkeztve:" +
+                this.szerkeztve+"\n" + this.tartalom;
     }
-
 
 
 }
