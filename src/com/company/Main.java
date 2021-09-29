@@ -10,7 +10,7 @@ public class Main {
 	Bejegyzes[] bejegyzesek = {b1,b2};
 	Bejegyzes bk1 = new Bejegyzes(bejegyzesek);
 	Bejegyzes bk2 = new Bejegyzes("bejegyzesek.txt");
-	
+
 
     }
 }

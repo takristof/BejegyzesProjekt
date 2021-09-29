@@ -9,12 +9,14 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 public class Bejegyzes {
 
     private FileReader fr;
     private BufferedReader br;
     public List<Bejegyzes> bejegyzesekLista;
+    public static Random random=new Random();
 
     public Bejegyzes(Bejegyzes[] bejegyzesTomb){
         this.bejegyzesekLista = new ArrayList<>();
@@ -74,13 +76,18 @@ public class Bejegyzes {
     public void like(){
         likeok++;
     }
-
-    public String  Kiiratas() {
-        String listaKi = "";
-        for (Bejegyzes item : bejegyzesekLista) {
-            listaKi += item + "\n";
+    public void likeAdas(){
+        int bejegyzes20=bejegyzesekLista.size();
+        for (int i=0; i<bejegyzes20;i++) {
+        bejegyzesekLista.get(random.nextInt(bejegyzesekLista.size())).like();
         }
-        return listaKi;
+
+    }
+    public void Kiiratas() {
+        for (Bejegyzes item : bejegyzesekLista) {
+            System.out.println(item);
+        }
+        
     }
     @Override
     public String toString() {
